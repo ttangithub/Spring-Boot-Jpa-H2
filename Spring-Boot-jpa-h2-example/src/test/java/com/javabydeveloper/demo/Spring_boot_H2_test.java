@@ -3,6 +3,7 @@ package com.javabydeveloper.demo;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,10 +25,20 @@ public class Spring_boot_H2_test {
 	void createUserTest() {
 		
 		User created = userRepository.save(getUser());
-		
+		List<User> users = userRepository.findAll();
+		displayUsers(users);
 		assertTrue(created != null);
+		
 	}
 	
+	private void displayUsers(List<User> users) {
+		
+		for (User usr : users) {
+			System.out.println("\n\t >>>> User Name: " + usr.getUserName());
+		}
+		
+	}
+
 	private User getUser() {
 		
 		User user = new User();
@@ -39,4 +50,5 @@ public class Spring_boot_H2_test {
 		
 		return user;
 	}
+	
 }
